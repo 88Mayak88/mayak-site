@@ -94,8 +94,10 @@ section{border-top:1px solid var(--line);scroll-margin-top:100px}
 .sec-h h2{font-size:clamp(40px,6vw,76px)}
 
 /* о себе */
-.about-head{flex-direction:column;align-items:flex-start;gap:18px}
-.about-h{margin:0;font-family:var(--body);font-weight:500;font-size:clamp(24px,3vw,36px);line-height:1.2;max-width:32ch;text-wrap:balance}
+/* вводная строка «О Евгении»: тихая подпись под меткой раздела, не спорит с колонками */
+.about-head{flex-direction:row;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap}
+.sec-h .about-h{margin:0;font-family:var(--body);font-weight:400;font-size:18px;line-height:1.45;color:var(--muted);max-width:60ch;text-align:right;text-wrap:balance}
+@media (max-width:900px){.about-head{flex-direction:column;gap:10px}.sec-h .about-h{text-align:left;font-size:16px}}
 /* О Евгении — без фото: три спокойные колонки после яркого первого экрана */
 .about{display:block}
 .rows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
@@ -341,7 +343,7 @@ section{border-top:1px solid var(--line);scroll-margin-top:100px}
   </div>
 
   <section id="about" class="g"><div class="in sec">
-    <div class="sec-h about-head"><span class="label">// О Евгении</span><h2 class="about-h">Свадебный ведущий в Омске. Веду свадьбы, юбилеи и корпоративы вместе со своей командой: диджей, звук, свет.</h2></div>
+    <div class="sec-h about-head"><span class="label">// О Евгении</span><h2 class="about-h">Свадебный ведущий в Омске. Свадьбы, юбилеи и корпоративы — со своей командой.</h2></div>
     <div class="about">
       <div class="rows">
         <div class="row"><span class="n">01</span><div><h3>Без пошлых конкурсов</h3><p>Ведущий, а не «тамада с конкурсами». Юмор без стыда, тосты без принуждения, гостям интересно до последнего танца.</p><p class="m">Традиции родственников и их сюрпризы согласую с ними сам, заранее.</p></div></div>
