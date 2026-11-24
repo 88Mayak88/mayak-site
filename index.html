@@ -181,9 +181,16 @@ section{border-top:1px solid var(--line);scroll-margin-top:100px}
 
 /* фото */
 .photos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(200px,24vw,320px);gap:12px}
-.photos figure{margin:0;border-radius:10px;overflow:hidden;background:var(--bg2)}
-.photos img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.photos figure:hover img{transform:scale(1.03)}
+/* галерея в стиле сайта: ч/б плёнка с зерном, кадр оживает в цвет (наведение / середина экрана на телефоне), подпись «01 — …» */
+.photos figure{position:relative;margin:0;border-radius:10px;overflow:hidden;background:#111}
+.photos img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.2) brightness(.97);transition:filter .7s ease,transform .7s ease}
+.photos figure::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.14;mix-blend-mode:overlay;transition:opacity .7s}
+.photos figure::after{content:"";position:absolute;inset:auto 0 0 0;height:48%;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.25) 45%,rgba(0,0,0,0))}
+.photos figcaption{position:absolute;left:16px;bottom:14px;right:16px;z-index:2;display:flex;align-items:baseline;gap:10px;color:#f2f1ee;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-shadow:0 1px 10px rgba(0,0,0,.55)}
+.photos figcaption b{color:#ff6a5a;font-weight:700}
+.photos figure:hover img,.photos figure.live img{filter:none;transform:scale(1.03)}
+.photos figure:hover::before,.photos figure.live::before{opacity:.06}
+@media (prefers-reduced-motion:reduce){.photos img,.photos figure::before{transition:none}.photos figure:hover img,.photos figure.live img{transform:none}}
 .photos .w2{grid-column:span 2}
 
 /* отзывы */
@@ -403,14 +410,14 @@ section{border-top:1px solid var(--line);scroll-margin-top:100px}
   <section id="photo" class="g"><div class="in sec">
     <div class="sec-h"><span class="label">// С праздников</span><span class="label">Живые кадры со свадьбы</span></div>
     <div class="photos">
-      <figure class="w2"><img src="img/w-family.webp?v=986efe78" alt="Родители обнимают жениха и невесту на свадьбе в Омске" loading="lazy" style="object-position:50% 30%"></figure>
-      <figure><img src="img/w-host-interview.webp?v=2ac33996" alt="Свадебный ведущий Евгений Маяк берёт интервью у родителей на свадьбе" loading="lazy" style="object-position:50% 30%"></figure>
-      <figure><img src="img/w-entrance.webp?v=5cd50832" alt="Выход жениха и невесты в зал на свадьбе" loading="lazy" style="object-position:50% 35%"></figure>
-      <figure><img src="img/w-couple-dance.webp?v=018c7046" alt="Жених и невеста танцуют на свадьбе в Омске" loading="lazy" style="object-position:50% 35%"></figure>
-      <figure><img src="img/w-song.webp?v=77d537c2" alt="Гостья поёт на свадьбе, интерактив ведущего" loading="lazy" style="object-position:50% 30%"></figure>
-      <figure class="w2"><img src="img/w-friends.webp?v=1f6a1301" alt="Жених и невеста с друзьями на свадьбе" loading="lazy" style="object-position:50% 25%"></figure>
-      <figure class="w2"><img src="img/w-sign.webp?v=1fa11f24" alt="Счастливые жених и невеста с табличкой Wedding" loading="lazy" style="object-position:50% 35%"></figure>
-      <figure class="w2"><img src="img/w-cake.webp?v=146c54bc" alt="Жених и невеста режут свадебный торт" loading="lazy" style="object-position:50% 35%"></figure>
+      <figure class="w2"><img src="img/w-family.webp?v=986efe78" alt="Родители обнимают жениха и невесту на свадьбе в Омске" loading="lazy" style="object-position:50% 30%"><figcaption><b>01</b>Родители</figcaption></figure>
+      <figure><img src="img/w-host-interview.webp?v=2ac33996" alt="Свадебный ведущий Евгений Маяк берёт интервью у родителей на свадьбе" loading="lazy" style="object-position:50% 30%"><figcaption><b>02</b>Интервью с гостями</figcaption></figure>
+      <figure><img src="img/w-entrance.webp?v=5cd50832" alt="Выход жениха и невесты в зал на свадьбе" loading="lazy" style="object-position:50% 35%"><figcaption><b>03</b>Выход пары</figcaption></figure>
+      <figure><img src="img/w-couple-dance.webp?v=018c7046" alt="Жених и невеста танцуют на свадьбе в Омске" loading="lazy" style="object-position:50% 35%"><figcaption><b>04</b>Танцпол</figcaption></figure>
+      <figure><img src="img/w-song.webp?v=77d537c2" alt="Гостья поёт на свадьбе, интерактив ведущего" loading="lazy" style="object-position:50% 30%"><figcaption><b>05</b>Песня от гостей</figcaption></figure>
+      <figure class="w2"><img src="img/w-friends.webp?v=1f6a1301" alt="Жених и невеста с друзьями на свадьбе" loading="lazy" style="object-position:50% 25%"><figcaption><b>06</b>Друзья пары</figcaption></figure>
+      <figure class="w2"><img src="img/w-sign.webp?v=1fa11f24" alt="Счастливые жених и невеста с табличкой Wedding" loading="lazy" style="object-position:50% 35%"><figcaption><b>07</b>Фото на память</figcaption></figure>
+      <figure class="w2"><img src="img/w-cake.webp?v=146c54bc" alt="Жених и невеста режут свадебный торт" loading="lazy" style="object-position:50% 35%"><figcaption><b>08</b>Торт</figcaption></figure>
     </div>
   </div></section>
 
@@ -478,6 +485,11 @@ section{border-top:1px solid var(--line);scroll-margin-top:100px}
   }
   fitStage(); addEventListener('resize',fitStage);
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fitStage);
+  // галерея: на телефоне кадр становится цветным, когда доезжает до середины экрана
+  if('IntersectionObserver' in window && matchMedia('(hover: none)').matches){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('live',e.isIntersecting)})},{rootMargin:'-38% 0px -38% 0px'});
+    document.querySelectorAll('.photos figure').forEach(function(f){io.observe(f)});
+  }
   var menu=document.getElementById('menu');
   document.getElementById('open-menu').addEventListener('click',function(){menu.hidden=false});
   document.getElementById('close-menu').addEventListener('click',function(){menu.hidden=true});

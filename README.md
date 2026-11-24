@@ -2,4 +2,4 @@
 
 Сайт: https://88mayak88.github.io/mayak-site/
 
-Версия 2.10. Собирается из прототипа скриптом build-deploy.py (SEO-заголовок, Schema.org, sitemap).
+Версия 3.0. Собирается из прототипа скриптом build-deploy.py (SEO-заголовок, Schema.org, sitemap).
