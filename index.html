@@ -180,13 +180,11 @@ section{border-top:1px solid var(--line);scroll-margin-top:100px}
 .step p{margin:0;font-size:16px;color:var(--muted)}
 
 /* фото */
-.photos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.photos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(200px,24vw,320px);gap:12px}
 .photos figure{margin:0;border-radius:10px;overflow:hidden;background:var(--bg2)}
 .photos img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .photos figure:hover img{transform:scale(1.03)}
-.photos .w2{grid-column:span 2;aspect-ratio:4/3}
-.photos .t{aspect-ratio:3/4}
-.photos .w2 img{object-position:50% 25%}
+.photos .w2{grid-column:span 2}
 
 /* отзывы */
 .revs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
@@ -254,7 +252,7 @@ section{border-top:1px solid var(--line);scroll-margin-top:100px}
   .steps{grid-template-columns:1fr}
   .step,.step + .step{padding:20px 0;border-right:0;border-bottom:1px solid var(--line)}
   .step:last-child{border-bottom:0}
-    .photos{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .photos{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:clamp(170px,52vw,280px)}
   .b2b{grid-template-columns:1fr;padding:24px}
   .faq-grid{grid-template-columns:1fr;gap:20px}
   .faq-head{position:static}
@@ -403,14 +401,16 @@ section{border-top:1px solid var(--line);scroll-margin-top:100px}
   </div></section>
 
   <section id="photo" class="g"><div class="in sec">
-    <div class="sec-h"><span class="label">// Фото</span><span class="label">Вне сценария</span></div>
+    <div class="sec-h"><span class="label">// С праздников</span><span class="label">Живые кадры со свадьбы</span></div>
     <div class="photos">
-      <figure class="w2"><img src="img/horse-close.webp?v=426f9708" alt="Ведущий Евгений Маяк верхом на лошади" loading="lazy"></figure>
-      <figure class="w2"><img src="img/aside.webp?v=652ba2c7" alt="Свадебный ведущий Евгений Маяк, студийный портрет" loading="lazy"></figure>
-      <figure class="t"><img src="img/jump.webp?v=e14b416d" alt="Ведущий Евгений Маяк прыгает через табурет" loading="lazy"></figure>
-      <figure class="t"><img src="img/stool.webp?v=a6eaffee" alt="Ведущий на свадьбу Евгений Маяк в костюме" loading="lazy"></figure>
-      <figure class="t"><img src="img/horse.webp?v=95b29b84" alt="Евгений Маяк верхом на лошади в поле" loading="lazy"></figure>
-      <figure class="t"><img src="img/chair.webp?v=39ff2331" alt="Ведущий праздников в Омске Евгений Маяк в кресле" loading="lazy"></figure>
+      <figure class="w2"><img src="img/w-host-contest.webp?v=0f6b64e1" alt="Свадебный ведущий Евгений Маяк проводит конкурс для гостей на свадьбе в Омске" loading="lazy" style="object-position:60% 50%"></figure>
+      <figure><img src="img/w-host-interview.webp?v=2ac33996" alt="Ведущий Евгений Маяк берёт интервью у родителей на свадьбе" loading="lazy" style="object-position:50% 30%"></figure>
+      <figure><img src="img/w-entrance.webp?v=5cd50832" alt="Выход жениха и невесты в зал на свадьбе" loading="lazy" style="object-position:50% 35%"></figure>
+      <figure><img src="img/w-dance.webp?v=114ccd62" alt="Невеста танцует на свадьбе, праздничная программа" loading="lazy" style="object-position:50% 25%"></figure>
+      <figure><img src="img/w-song.webp?v=77d537c2" alt="Гостья поёт на свадьбе, интерактив ведущего" loading="lazy" style="object-position:50% 30%"></figure>
+      <figure class="w2"><img src="img/w-father.webp?v=0a358cf3" alt="Танец невесты с отцом на свадьбе" loading="lazy" style="object-position:50% 40%"></figure>
+      <figure class="w2"><img src="img/w-contest.webp?v=b1446a40" alt="Конкурс для гостей на свадьбе в Омске" loading="lazy" style="object-position:50% 45%"></figure>
+      <figure class="w2"><img src="img/w-cake.webp?v=146c54bc" alt="Жених и невеста режут свадебный торт" loading="lazy" style="object-position:50% 35%"></figure>
     </div>
   </div></section>
 
