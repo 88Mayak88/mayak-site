@@ -63,6 +63,15 @@ assert '<title>Евгений Маяк</title>' in s
 s = s.replace('<title>Евгений Маяк</title>', head, 1)
 s = s.replace('*{box-sizing:border-box}', '*{box-sizing:border-box}\nbody{margin:0}', 1)
 s = '<!doctype html>\n<html lang="ru">\n' + s + '\n</html>\n'
+# метка версии к каждой картинке: при замене файла браузер сразу берёт новый, а не копию из кэша
+import hashlib, os
+def bust(m):
+    path = m.group(1)
+    f = os.path.join(dst_dir, path)
+    if not os.path.exists(f): return m.group(0)
+    h = hashlib.md5(open(f, "rb").read()).hexdigest()[:8]
+    return m.group(0).replace(path, path + "?v=" + h)
+s = re.sub(r'(?:src|href|content)="(?:' + re.escape(URL) + r')?(img/[A-Za-z0-9_.-]+)"', bust, s)
 open(dst_dir + "/index.html", "w", encoding="utf-8").write(s)
 
 open(dst_dir + "/sitemap.xml", "w", encoding="utf-8").write(
