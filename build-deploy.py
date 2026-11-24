@@ -51,7 +51,7 @@ head = f'''<title>{TITLE}</title>
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="Евгений Маяк">
 <meta property="og:title" content="Евгений Маяк — свадебный ведущий, Омск">
-<meta property="og:description" content="Интеллигентный ведущий. Держу вечер под контролем, чтобы вы в свой день ничего не решали.">
+<meta property="og:description" content="Интеллигентный ведущий. Держу вечер под контролем, чтобы вы в свой день отдыхали.">
 <meta property="og:image" content="{URL}img/og.jpg">
 <meta property="og:url" content="{URL}">
 <meta name="theme-color" content="#060607">
