@@ -242,11 +242,6 @@ section{border-top:1px solid var(--line);scroll-margin-top:100px}
 
 /* отзывы */
 
-/* для площадок */
-.b2b{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;padding:36px;background:var(--bg2);border-radius:14px}
-.b2b h2{font-size:clamp(32px,4.4vw,54px)}
-.b2b p{margin:14px 0 0;color:var(--muted);max-width:56ch}
-.b2b .acts{display:flex;flex-direction:column;gap:10px}
 
 /* частые вопросы */
 .faq-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px;align-items:start}
@@ -311,8 +306,7 @@ section{border-top:1px solid var(--line);scroll-margin-top:100px}
   .steps.anim .fill,.steps.anim.go .fill{transform:scaleY(var(--p,0));transition:none}
   .steps.anim.go .step .dot,.steps.anim.go .step .n{transition-delay:0s}
     .photos{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:clamp(170px,52vw,280px)}
-  .b2b{grid-template-columns:1fr;padding:24px}
-  .faq-grid{grid-template-columns:1fr;gap:20px}
+    .faq-grid{grid-template-columns:1fr;gap:20px}
   .faq-head{position:static}
   .faq .a p{font-size:16px}
   .contact .in{padding-block:56px 48px}
@@ -362,8 +356,7 @@ section{border-top:1px solid var(--line);scroll-margin-top:100px}
     </div>
     <nav class="sub" aria-label="Разделы">
       <a href="#packs">Свадьбы</a><span>/</span>
-      <a href="#show">Шоу под ключ</a><span class="hide-s">/</span>
-      <a class="hide-s" href="#venues">Для площадок</a><span>/</span>
+      <a href="#show">Шоу под ключ</a><span>/</span>
       <a href="#video">Видео</a>
     </nav>
   </div>
@@ -373,7 +366,7 @@ section{border-top:1px solid var(--line);scroll-margin-top:100px}
   <div class="in" style="width:100%">
     <div class="top"><span class="logo">Евгений Маяк</span><button class="dots" id="close-menu" aria-label="Закрыть меню"><svg width="20" height="20" viewBox="0 0 20 20" stroke="currentColor" stroke-width="2"><path d="M3 3l14 14M17 3L3 17"/></svg></button></div>
     <nav>
-      <a href="#about">О ведущем</a><a href="#video">Видео</a><a href="#packs">Пакеты</a><a href="#how">Как готовимся</a><a href="#photo">Фото</a><a href="#reviews">Отзывы</a><a href="#venues">Для площадок</a><a href="#faq">Вопросы</a><a href="#contacts">Контакты</a>
+      <a href="#about">О ведущем</a><a href="#video">Видео</a><a href="#packs">Пакеты</a><a href="#how">Как готовимся</a><a href="#photo">Фото</a><a href="#reviews">Отзывы</a><a href="#faq">Вопросы</a><a href="#contacts">Контакты</a>
     </nav>
   </div>
 </div>
@@ -494,13 +487,6 @@ section{border-top:1px solid var(--line);scroll-margin-top:100px}
     </div>
   </div></section>
 
-  <section id="venues" class="g"><div class="in sec">
-    <div class="b2b">
-      <div><span class="label">// Площадкам и организаторам</span><h2 class="d" style="margin-top:14px">Материалы для площадок</h2><p>Презентация, райдер по звуку и свету, время монтажа и подключения. Чтобы рекомендовать меня парам было просто.</p></div>
-      <div class="acts"><a class="btn" href="#contacts">Получить презентацию</a><a class="btn ghost" href="#contacts">Райдер</a></div>
-    </div>
-  </div></section>
-
   <section id="faq" class="g"><div class="in sec">
     <div class="faq-grid">
       <div class="faq-head"><span class="label">// Вопросы</span><h2 class="d" style="margin-top:14px">Частые<br>вопросы</h2></div>
@@ -560,9 +546,12 @@ section{border-top:1px solid var(--line);scroll-margin-top:100px}
   fitStage(); addEventListener('resize',fitStage);
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fitStage);
   // галерея: на телефоне кадр становится цветным, когда доезжает до середины экрана
-  if('IntersectionObserver' in window && matchMedia('(hover: none)').matches){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('live',e.isIntersecting)})},{rootMargin:'-38% 0px -38% 0px'});
-    document.querySelectorAll('.photos figure').forEach(function(f){io.observe(f)});
+  // галерея (телефон): цветным становится только кадр в середине экрана. Считаем по прокрутке — в окне артефакта rootMargin не работает
+  if(matchMedia('(hover: none)').matches){
+    var figs=[].slice.call(document.querySelectorAll('.photos figure'));
+    var liveTick=function(){var vh=innerHeight, top=vh*.35, bot=vh*.65;
+      figs.forEach(function(f){var r=f.getBoundingClientRect(), c=(r.top+r.bottom)/2; f.classList.toggle('live', c>top && c<bot);});};
+    addEventListener('scroll',function(){requestAnimationFrame(liveTick)},{passive:true}); addEventListener('resize',liveTick); liveTick();
   }
   // «От заявки до финала»: компьютер — запуск анимации при появлении блока; телефон — линия заполняется при прокрутке, шаги загораются по мере прохождения
   (function(){
