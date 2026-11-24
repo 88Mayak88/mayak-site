@@ -227,9 +227,10 @@ section{border-top:1px solid var(--line);scroll-margin-top:100px}
 .ct-list a span{color:var(--muted);font-weight:400}
 .ct-list a:hover{color:var(--accent);padding-left:10px}
 .ct-hours{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-.ct-face{position:relative;aspect-ratio:1/1.12;width:100%;max-width:520px;justify-self:end}
+/* фото обрезано рамкой снимка слева (нога) и снизу — прижимаем эти срезы к краям красного блока, чтобы срез был частью композиции */
+.ct-face{position:relative;aspect-ratio:1/1.242;width:100%;max-width:480px;justify-self:end;overflow:hidden;border-radius:0 0 8px 8px}
 .ct-face .sq{position:absolute;inset:16% 0 0;background:var(--accent);border-radius:8px}
-.ct-face img{position:absolute;inset:0;width:100%;height:100%;max-width:100%;object-fit:contain;object-position:50% 100%}
+.ct-face img{position:absolute;left:0;bottom:0;width:92%;height:auto;max-width:none}
 .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:24px calc(24px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
 
 
